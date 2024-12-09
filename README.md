@@ -20,7 +20,7 @@ has_many :habits, dependent: :destroy
 | ------------------                  | ------     | -----------                 |
 | user                                | references | null: false ,foreign_key: true              |
 | title                               | string     | null: false                 |
-| description                         | text       | null: false               |
+| description                         | text       |               |
 
  
 
