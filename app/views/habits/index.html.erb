@@ -29,8 +29,15 @@
     </section>
 
     <div class="cta">
-      <a href="<%= new_user_registration_path %>" class="btn">新規登録はこちら</a>
-       <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary" %>
+      <% if user_signed_in? %>
+        <!-- ログイン済みの場合 -->
+        <%= link_to "習慣投稿", new_habit_path, class: "btn" %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
+      <% else %>
+        <!-- 未ログインの場合 -->
+        <%= link_to "新規登録はこちら", new_user_registration_path, class: "btn" %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary" %>
+      <% end %>
     </div>
   </main>
 
