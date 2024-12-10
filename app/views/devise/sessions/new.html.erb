@@ -1,27 +1,34 @@
-<div class="contents row">
-  <div class="container">
-    <h2>Log in</h2>
-    <%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HabiLog - ログイン</title>
+  <link rel="stylesheet" href="/assets/user_style.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1>🚀 ログイン 🚀</h1>
+    <p>習慣管理をもっと楽しく！ログインして始めましょう！</p>
+
+    <%= form_with scope: :user, url: session_path(:user), local: true, class: "login-form" do |f| %>
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス", class: "form-label" %>
+        <%= f.email_field :email, autofocus: true, class: "form-input" %>
       </div>
 
-      <div class="field">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
+      <div class="form-group">
+        <%= f.label :password, "パスワード", class: "form-label" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-input" %>
       </div>
 
-      <% if devise_mapping.rememberable? %>
-        <div class="field">
-          <%= f.label :remember_me %><br />
-          <%= f.check_box :remember_me %>
-        </div>
-      <% end -%>
-
-      <div class="actions">
-        <%= f.submit "Log in" %>
+      <div class="form-actions">
+        <%= f.submit "ログイン", class: "btn btn-primary" %>
       </div>
     <% end %>
+
+    <p>まだアカウントがない方は？ <%= link_to "新規登録はこちら", new_user_registration_path, class: "link" %></p>
   </div>
-</div>
+</body>
+</html>
+
