@@ -1,24 +1,42 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users（ユーザー管理用） テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options             |
+| ------------------ | ------ | -----------         |
+| nickname           | string | null: false             |
+| email              | string | null: false, unique: true|
+| encrypted_password | string | null: false             |
 
-* Ruby version
 
-* System dependencies
+### Association
 
-* Configuration
+has_many :habits, dependent: :destroy
 
-* Database creation
 
-* Database initialization
+##  habits（習慣投稿用）テーブル
 
-* How to run the test suite
+| Column                              | Type       | Options                     |
+| ------------------                  | ------     | -----------                 |
+| user                                | references | null: false ,foreign_key: true              |
+| title                               | string     | null: false                 |
+| description                         | text       |               |
 
-* Services (job queues, cache servers, search engines, etc.)
+ 
 
-* Deployment instructions
+### Association
 
-* ...
+belongs_to :user 
+has_many :habit_logs, dependent: :destroy
+
+## habit_logs（習慣記録用）テーブル
+
+| Column                              | Type       | Options                     |
+| ------------------                  | ------     | -----------                 |
+| habit                               | references | null: false, foreign_key: true               |
+| date                                | date       | null: false                 |
+| note                                | text       |                             |
+| status                              | boolean    | null: false, trueが達成、falseが未達成      |
+
+### Association
+belongs_to :habit
