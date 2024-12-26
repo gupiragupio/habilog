@@ -57,7 +57,7 @@ Habilogは、次のような特徴を持つアプリケーションです。
 1. リポジトリをクローンします。
 
 ```bash
-git clone <リポジトリのURL>
+git clone <https://github.com/gupiragupio/habilog?tab=readme-ov-file#readme>
 
 
 # テーブル設計
